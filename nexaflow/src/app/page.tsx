@@ -10,7 +10,7 @@ export default function Home() {
           className="mx-auto mb-4 flex max-w-fit item-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200
       bg-white px-7 py-2 shadow-md blackdrop-blur transition-all hover:border-gray-300 hover:bg-white/50"
         >
-          <p className="text-sm font-semibold text-gray-700">
+          <p className="text-sm font-semibold text-gray-700 ">
             NexaFlow is now public!
           </p>
         </div>
