@@ -12,7 +12,7 @@ const page = () => {
   useEffect(() => {
     const syncUser = async () => {
      
-        const response = await fetch('pages/api', {
+        const response = await fetch('api/route', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
