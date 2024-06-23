@@ -7,12 +7,12 @@ import { Loader2 } from 'lucide-react';
 const page = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const origin = searchParams.get('origin');
+  const origin = searchParams?.get('origin') ;
 
   useEffect(() => {
     const syncUser = async () => {
      
-        const response = await fetch('api/route', {
+        const response = await fetch('/api/route', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -3,14 +3,10 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import pool from '@/app/db';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
-  }
 
-  
-    const { getUser } = getKindeServerSession();
+  const { getUser } = getKindeServerSession(req,res);
     const user = await getUser();
-
+    console.log(user);
     if (!user || !user.id) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -19,13 +15,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     
       const [existingUser] = await connection.execute(
-        'SELECT * FROM users WHERE kindeId = ?',
+        'SELECT * FROM users WHERE id = ?',
         [user.id]
       );
 
       if (existingUser.length === 0) {
         await connection.execute(
-          'INSERT INTO users (kindeId, name, email) VALUES (?, ?, ?)',
+          'INSERT INTO users (id, name, email) VALUES (?, ?, ?)',
           [user.id, `${user.given_name} ${user.family_name}`, user.email]
         );
       }
